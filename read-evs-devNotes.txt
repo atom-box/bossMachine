@@ -1,0 +1,15 @@
+Overview of files.   (*) = most active development
+
+SERVER.JS
+This is big.  Holds most of the non-router middleware.
+app.use...
+require...
+
+DATA_STRUCT.js
+Unofficial.
+I made this as a scratchpad for writing the data objects.
+
+INDEX.HTML
+Front end; don't touch.  
+Built in react.js, I think.
+
