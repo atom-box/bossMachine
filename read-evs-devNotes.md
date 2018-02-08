@@ -1,0 +1,55 @@
+#Needs-to-return list 
+### __Based__ on _video_
+Press SAVE under a form = POST new MinionObject
+Press SAVE under a form = put existing M.O. MinionObject
+Press center of minions while on homescreen =
+GET all minions
+Press lowest left facing arrow = TOUGH!  give the most recently enacted request (maybe always store recent route in a buffer variable?)
+
+
+#Overview of files.   
+(*) = most active development
+
+##SERVER.JS
+1-parse
+2-CORS
+3-listen 
+This is big.  Holds most of the non-router middleware.
+app.use...
+require...
+
+##DATA_STRUCT.js
+Unofficial.
+I made this as a scratchpad for writing the data objects.
+
+##INDEX.HTML
+Front end; don't touch.  
+Built in react.js, I think.
+
+##API.JS (in Server folder)
+All routes start here !
+1-minions
+2-ideas
+3-meetings 
+Probably need to all have their own folders.
+
+##DB.JS (in Server folder)
+Your non-persistant data has to re-start here every time the app runs.  
+Write custom functions your routes can use.  Export!
+Write these seven functions here:
+const LOVELYNAME = () => {}; 
+const LOVELYNAME = (a|b|c|d) => {}; 
+
+where abcd can be
+`'minions'`, `'ideas'`, `'meetings'`, or `'work'`.
+These titles:
+`getAllFromDatabase`
+`getFromDatabaseById`
+`addToDatabase`
+`updateInstanceInDatabase`
+`deleteFromDatabasebyId`:
+`deleteAllFromDatabase`:
+
+##ROUTES.JS (in Server folder)
+
+##CHECK-M-D-IDEA.JS (in Server folder)
