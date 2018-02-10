@@ -14,8 +14,22 @@
 const express = require('express');
 const ideasRouter = require("./ideasRouter.js");
 const minionsRouter = require("./minionsRouter.js");
-const apiRouter = express.Router();
+const apiRouter = express();
 console.log(`Reporting for duty: "api".`);
 
+apiRouter.use("/ideas/", ideasRouter);
+apiRouter.get("/", (req, res, next)=>{
+	res.send("This is the boss machine, mother-fucker. ( 2 words?) ")
+	next();
+} );
+
+apiRouter.use((req, res)=>{
+	console.log("We no dinna find nuttin'.");
+	res.status(404).render("444000444...");
+	res.redirect("https://giphy.com/search/rick-astley");
+
+} );
+
+apiRouter.listen(3000);
 
 module.exports = apiRouter;
