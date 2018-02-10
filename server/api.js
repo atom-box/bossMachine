@@ -6,10 +6,16 @@
 /**/
 /*****************************************************/
 
+// look 
+// up things
+// in 
+// http://expressjs.com/th/api.html
 
 const express = require('express');
+const ideasRouter = require("./ideasRouter.js");
+const minionsRouter = require("./minionsRouter.js");
 const apiRouter = express.Router();
-
+console.log(`Reporting for duty: "api".`);
 
 
 module.exports = apiRouter;
