@@ -25,9 +25,9 @@ ideasRouter.get("/0", (req, res, next)=>{
 
 // This route does not
 ideasRouter.get("/:id", (req, res, next)=>{
-	let n = parseInt(req.params.id); // add 10 ?
+	let n = parseInt(req.params.id, 10); // add 10 ?
 	console.log(`Parsed this --${n}--` );
-	res.send(`My fave idea is {ideas[n]}`);
+	res.send(`My fave idea is ${ideas[n]}`);
 	return;
 } );
 
