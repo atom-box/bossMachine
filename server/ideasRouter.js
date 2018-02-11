@@ -1,8 +1,11 @@
 const express = require('express');
 const ideasRouter = express.Router();
 console.log(`Reporting for duty: "ideasRouter".`);
-// the following utils are totally from a codec lesson
-const { getElementById, getIndexById, updateElement, seedElements, createElement } = require('./utilsCA.js');
+// COMMENT OUT THESE
+// const { getElementById, getIndexById, updateElement, seedElements, createElement } = require('./utilsCA.js');
+
+// USE THESE INSTEAD
+const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
 
 
 
@@ -23,7 +26,7 @@ ideasRouter.get("/0", (req, res, next)=>{
 	return;
 } );
 
-// This route does not
+// This works; now
 ideasRouter.get("/:id", (req, res, next)=>{
 	let n = parseInt(req.params.id, 10); // add 10 ?
 	console.log(`Parsed this --${n}--` );
@@ -32,4 +35,4 @@ ideasRouter.get("/:id", (req, res, next)=>{
 } );
 
 
-module.exports = (ideasRouter);
+module.exports = ideasRouter;
