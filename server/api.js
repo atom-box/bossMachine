@@ -12,14 +12,22 @@
 // http://expressjs.com/th/api.html
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const workRouter =require("./workRouter.js");
 const ideasRouter = require("./ideasRouter.js");
 const minionsRouter = require("./minionsRouter.js");
+const meetingsRouter = require("./meetingsRouter.js");
+
 const apiRouter = express();
 console.log(`Reporting for duty: "api".`);
-
-apiRouter.use("/ideas/", ideasRouter);
+const logger = morgan('tiny');
+//apiRouter.use("/minions", minionsRouter);
+//apiRouter.use("/ideas", ideasRouter);
+//apiRouter.use("/meetings", meetingsRouter);
+apiRouter.use("/work", workRouter);
 apiRouter.get("/", (req, res, next)=>{
-	res.send("This is the boss machine, mother-fucker. ( 2 words?) ")
+	res.send("This is the boss machine, my friend.")
 	next();
 } );
 
