@@ -15,10 +15,16 @@ workRouter.get("/",(req, res, next)=>{
 
 // obviously   not zero
 workRouter.get("/:id", (req, res, next)=>{
-	const x = db.allWork.data[0];
-	res.send(x);
+	const id = req.params.id;
+	const x = getFromDatabaseById("work", id);
+	res.send(`We found ${x.description}! R U pleased?`);
+	next();
 } ) ;
 
+workRouter.put("???", (req, res)=>{
+	const OBJECT SOMEHOW ???
+	addToDatabase("/work/" , OBJECT);
+} );
 
 console.log("On duty: workRouter!");
 module.exports = workRouter;
