@@ -1,7 +1,7 @@
 const express = require("express");
 const workRouter = express.Router();
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
-const db = require("./db.js");
+//const db = require("./db.js");
 workRouter.get("/",(req, res, next)=>{
 	console.log("easiest route ever -- in work, '/'")
 	const w = getAllFromDatabase("work");
@@ -12,6 +12,18 @@ workRouter.get("/",(req, res, next)=>{
 	}
 	next();
 } );
+let workIdCounter = 155;
+
+const fakeWork1 = { // JUST TODO
+//TODO funtion is 'workGenesis'
+    id: `${workIdCounter++}`,
+    // TODO id is a string ??
+    title: `yeah.  Luxuriate like a Regal mofo.`,
+    description: 'Groom',
+    hours: Math.floor(Math.random() * 8) + 1,
+    minionId: `3456`,
+  };
+
 
 // obviously   not zero
 workRouter.get("/:id", (req, res, next)=>{
@@ -21,9 +33,10 @@ workRouter.get("/:id", (req, res, next)=>{
 	next();
 } ) ;
 
-workRouter.put("???", (req, res)=>{
-	const OBJECT SOMEHOW ???
-	addToDatabase("/work/" , OBJECT);
+workRouter.put("/work/", (req, res)=>{
+	// TODO get real req.params.
+	const x = addToDatabase("work" , fakeWork1);
+	res(`It sent back this _${x}_`);
 } );
 
 console.log("On duty: workRouter!");

@@ -14,7 +14,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 //const morgan = require('morgan');
-//const workRouter =require("./workRouter.js");
+const workRouter =require("./workRouter.js");
 //const ideasRouter = require("./ideasRouter.js");
 //const minionsRouter = require("./minionsRouter.js");
 //const meetingsRouter = require("./meetingsRouter.js");
@@ -25,7 +25,7 @@ console.log(`Line 23 in API.js.`);
 //apiRouter.use("/minions", minionsRouter);
 //apiRouter.use("/ideas", ideasRouter);
 //apiRouter.use("/meetings", meetingsRouter);
-//apiRouter.use("/work", workRouter);
+apiRouter.use("/work", workRouter);
 apiRouter.get("/", (req, res, next)=>{
 	console.log(`Parsed this in REQ: ${req.params}`);
 	console.log("The NULL route worked, line 30, in api.js.");
