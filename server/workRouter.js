@@ -14,21 +14,27 @@ workRouter.get("/",(req, res, next)=>{
 } );
 
 // obviously   not zero
+// watchout!  id is a String 
 workRouter.get("/:id", (req, res, next)=>{
 	const id = req.params.id;
 	let all, many, built, title;
 	all = getAllFromDatabase("work"); // works
 	many = all.length;
-	/* for (let n=1; n < id; n++){
-		title = getFromDatabaseById(n).title;
-		built += title;
-	}*/
-	title = getFromDatabaseById(id);
+	// TITLE ONLY PART GIVING null 
+ 	gfdwID = getFromDatabaseById("work", id);
 	console.log(`Told to find # ${id}`);
 	console.log(`Came back with ${title}`);
 	console.log(`The all[5] gives ${all[5]}`);
+	const whatIs = typeof gfdwID;
 
-	res.send(`We found ${many}! R U pleased? The all[5] gives ${all[5].description}. It has these [${title}].`);
+	res.send(`Bueller...Bueller?   
+		1 [${gfdwID.description} ], \n
+		2 [ ${gfdwID.hours} ], \n \t
+		3 [ ${gfdwID.title} ]
+
+		`);
+
+	/*res.send(`Parsing the incomings said "id" is ${id}.  The all[5]. title and id give ${all[5].title} & ${all[5].id} .  GFDW-id for _${id}_ gave _${gfdwID}_. Keys are [ ]What is it getting: [${whatIs}]\n\n See if this works:  `);*/
 	next();
 });
 
