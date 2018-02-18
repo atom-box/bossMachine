@@ -6,16 +6,35 @@ const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInD
 express = require("express");
 minionsRouter = express();
 
-minionsRouter.get("/", (req, res)=>  {
+minionsRouter.get(`/api/minions`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");
 	if (!itWorked){
 		res.status(400).send("Found less than ALL minions; found none.  GET failed.");
+		return;
 	} else {
+		res.send(itWorked);
 		next(); 
 	}
-
 } );
+
+minionsRouter.get(`/api/minions/:minionId`, (req, res, next)=>{
+	let itWorked = undefined;
+	itWorked = getFromDatabaseById(`minions`, minionId );
+	if (!itWorked){
+		res.status(400).send("Failed to find: One minion by ID.  Ev.");
+		return;
+	}else{
+		res.send(itWorked);
+		next();
+	}
+} );
+
+minionsRouter.post(`/api/minions`, (req, res, next)=>{
+	itWorked = addToDatabase(`minions`, minionId );
+
+}  );
+
 console.log("minions router present");
 module.exports = minionsRouter;
 
