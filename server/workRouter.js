@@ -1,3 +1,7 @@
+/**************************************/
+/*    January 31, 2018 by Evan Genest */
+/**************************************/
+
 const express = require("express");
 const workRouter = express.Router();
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
@@ -38,19 +42,28 @@ workRouter.get("/:id", (req, res, next)=>{
 	next();
 });
 
-// TODO remove.  Implement call to db.js
-// TODO parse incoming
-// TODO write the incoming
+
 let workIdCounter = 155;
 const fakeWork1 = { // JUST TODO
 //TODO funtion is 'workGenesis'
-    id: `${workIdCounter++}`,
-    // TODO id is a string ??
-    title: `yeah.  Luxuriate like a Regal mofo.`,
-    description: 'Groom',
+    id: "",
+    // TODO id is a string, asigned in function
+    title: `Mayonnaise keychains.`,
+    description: 'Sell co-branded, backpack size bottles of "Smart Mayonnaise".',
     hours: Math.floor(Math.random() * 8) + 1,
     minionId: `3456`,
 };
+
+workRouter.put("/api/minions/:minionId/work/:workId", (req, res, next)=>{
+	let worked;
+	worked = addToDatabase("work", fakeWork1);
+	if(!worked){
+		res.status(400).status("PUT didn't put.");
+		return;
+	} else{
+		next();
+	}
+}  );
 
 
 workRouter.put("/work/", (req, res)=>{
@@ -65,3 +78,11 @@ module.exports = workRouter;
 // LEARNED -->  PORT is not visible here.
 // console.log(`Greetings from ${PORT}!`);
 
+
+/******************************************/
+/*    January 31, 2018 by Evan Genest     */
+/* "Boss Machine" for "Build Your Own APIs"*/
+/*          at Codecademy              */
+/*        https://github.com/atom-box  */
+/**/
+/***************************************/
