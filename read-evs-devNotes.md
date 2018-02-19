@@ -1,5 +1,25 @@
 #Needs-to-return list 
 ## Newest notes first, starting from today:
+Monday next action:  
+Pepper some more lines of console.log around, to trace what happens when I press the red SAVE BUTTOn in app.
+Biggest question is examining what an incoming req has in it.  If same as Hahn's Commentor there should be a "req.body" "req.body.title".  
+At Metcalfes tried to get it to print.   Went from 'NODINNAGETNUTTIN', then changed route to better(?) and now get some silence.   Mystery: now get no console.log.  Pepper some more lines of console.log around, to trace what happens when I press the red SAVE BUTTOn in app.
+
+Sunday to-do:
+Next action!  Very clear, 
+0) read about what request object has.  how that red app sends request OBJECT
+MAKE THE RESPONSE PRINT WHAT IS IN THE REQUEST OBJECT IT RECEIVED.
+1) build a post following the line116 schema from README
+2) once you get that working, then go back and rewrite the GET and GET by:id to reflect the
+/api/minions/:minionId/work  route. (Every route you wrote yesterday was wrong; they lacked the '/api' at the front.  That's why they only ran in Node.) There is actually NO route that says /work/33, only there are routes that say api/minions/minId/work....
+
+
+Saturday:
+The object that is returned by find by Id has these keys:
+[ id,title,description,hours,minionId ]
+
+
+
 From db.js:
 returns db.allIdeas<-findData
 
