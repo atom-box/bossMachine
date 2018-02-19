@@ -2,7 +2,7 @@
 /*        January 31, 2018 by Evan Genest        */
 /* "Boss Machine" for "Build Your Own APIs"      */
 /*          at Codecademy                        */
-/*                       */
+/*        https://github.com/atom-box               */
 /**/
 /*****************************************************/
 
@@ -16,13 +16,13 @@ const bodyParser = require('body-parser');
 //const morgan = require('morgan');
 const workRouter =require("./workRouter.js");
 //const ideasRouter = require("./ideasRouter.js");
-//const minionsRouter = require("./minionsRouter.js");
+const minionsRouter = require("./minionsRouter.js");
 //const meetingsRouter = require("./meetingsRouter.js");
 
 const apiRouter = express.Router();
 console.log(`Line 23 in API.js.`);
 //const logger = morgan('tiny');
-//apiRouter.use("/minions", minionsRouter);
+apiRouter.use("/minions", minionsRouter);
 //apiRouter.use("/ideas", ideasRouter);
 //apiRouter.use("/meetings", meetingsRouter);
 apiRouter.use("/work", workRouter);
@@ -33,7 +33,7 @@ apiRouter.get("/", (req, res, next)=>{
 	next();
 } );
 
-apiRouter.get("/pancho", (req, res)=>{
+apiRouter.get("/test", (req, res)=>{
 	let n = 2;
 	res.send(`Looks like the name is _${n}_ and the salary is "Pancho"`);
 	next();
