@@ -22,7 +22,7 @@ const minionsRouter = require("./minionsRouter.js");
 const apiRouter = express.Router();
 console.log(`Line 23 in API.js.`);
 //const logger = morgan('tiny');
-apiRouter.use("/minions", minionsRouter);
+apiRouter.use("/api/minions", minionsRouter);
 //apiRouter.use("/ideas", ideasRouter);
 //apiRouter.use("/meetings", meetingsRouter);
 apiRouter.use("/work", workRouter);
