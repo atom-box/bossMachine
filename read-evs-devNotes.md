@@ -1,5 +1,18 @@
 #Needs-to-return list 
-## Newest notes first, starting from today:
+
+
+
+## Future Commit messages for GIT:
+Get the process.env.PORT to print out.  Seems absent.
+1) Set up SERVER.JS middleware. 
+2) Make SERVER.JS create some kind of console.log output so you can figure out what the Hades is going on when the react.js legacy buttons are pressed.
+3) Experiment with 'Listen on 4001' PORT to make sure that is not a bug.
+4) Move, temporarily, routes to API.JS until their REQ and RES objects are well understood. 
+5) Write error middleware (error-ware?) into the routes so you know where they die if they die.
+
+
+
+
 Monday next action:  
 Pepper some more lines of console.log around, to trace what happens when I press the red SAVE BUTTOn in app.
 Biggest question is examining what an incoming req has in it.  If same as Hahn's Commentor there should be a "req.body" "req.body.title".  
