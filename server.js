@@ -19,17 +19,33 @@ module.exports = app;
 /* Do not change the following line! It is required for testing and allowing
 *  the frontend application to interact as planned with the api server
 */
+
+console.log(`HERE IS PROCESS DOT ENV keys:${Object.keys(process.env)} evanARTHUR`);
+let envKeys =[];
+let x = "";
+envKeys = Object.keys(process.env);
+for (x in envKeys){
+	console.log(`[${x}] is: ${process.env[x]}.`);
+}
 const PORT = process.env.PORT || 4001;
 
 // Add middleware for handling CORS requests from index.html
 
 
 // Add middware for parsing request bodies here:
+// TEMP EVAN
+app.get("/api/minions/", (req, res, next)=>{
+	console.log("A route worked! server.js ")
+} );
+
+app.get("/minions/", (req, res, next)=>{
+	console.log("A route worked! server.js ")
+} );
 
 
 // Mount your existing apiRouter below at the '/api' path.
-const apiRouter = require('./server/api.js');
-app.use("/api", apiRouter);
+// UNCOMMENT!   const apiRouter = require('./server/api.js');
+// UNCOMMENT! app.use("/api", apiRouter);
 
 // This conditional is here for testing purposes:
 if (!module.parent) { 
