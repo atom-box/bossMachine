@@ -6,6 +6,10 @@
 /**/
 /*****************************************************/
 
+// look 
+// up things
+// in 
+// http://expressjs.com/th/api.html
 
 const faker = require('faker');
 
@@ -52,7 +56,9 @@ const companies = [
   'Pets.com',
 ];
 
+console.log("About to make some idees...");
 const createIdea = () => {
+  console.log("Made another idea!");
   const noun = faker.company.bsNoun();
   const name = companies[Math.floor(Math.random() * companies.length)];
   let weeklyRevenue = 0;
