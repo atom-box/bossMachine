@@ -3,7 +3,17 @@
 
 
 ## Future Commit messages for GIT:
-Get the process.env.PORT to print out.  Seems absent.
+0) strange problem  -- If manual entry works for  http://localhost:4001/api/ideas, BUT the red app does not, do something to make the red app actually work.
+0) Will need to restore the routes then to some semblance of what is supposed to be happening!
+0) I downloaded a solution from a classmate
+0) SEE IF THAT RUNS -- it does!!  Start imitating that before you move to next step.
+0) Probably it is HIGH TIME I started using Chai cocoa or whatever, to just test.
+
+
+    axios.get('http://localhost:4001/api/minions'),
+    axios.get('http://localhost:4001/api/ideas'),
+    axios.get('http://localhost:4001/api/meetings'),
+  ])
 1) Set up SERVER.JS middleware. 
 2) Make SERVER.JS create some kind of console.log output so you can figure out what the Hades is going on when the react.js legacy buttons are pressed.
 3) Experiment with 'Listen on 4001' PORT to make sure that is not a bug.
