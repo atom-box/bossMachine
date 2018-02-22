@@ -34,12 +34,22 @@ const PORT = process.env.PORT || 4001;
 
 // Add middware for parsing request bodies here:
 // TEMP EVAN
-app.get("/api/minions/", (req, res, next)=>{
-	console.log("A route worked! server.js ")
+const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./server/db.js");
+app.get(`/api/minions/`, (req, res, next) => {
+	let itWorked = undefined;
+	itWorked = getAllFromDatabase("minions");
+	if (!itWorked){
+		res.status(400).send("Found less than ALL minions; found none.  GET failed.");
+		return;
+	} else {
+		res.send(itWorked);
+		next(); 
+	}
 } );
 
-app.get("/minions/", (req, res, next)=>{
-	console.log("A route worked! server.js ")
+app.get("api/minions/:id", (req, res, next)=>{
+	res.send(`They want ${req.params.id} or maybe ${id}.`);
+	next();
 } );
 
 
