@@ -9,25 +9,32 @@ const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInD
 express = require("express");
 minionsRouter = express();
 
-
+/*
 minionsRouter.get('/', (req, res, next) => {
   res.send(getAllFromDatabase('minions'));
 });
+*/
 
-
-/*   MY DISGRACED ROUTE
+/*   MY ROUTE works fine, better than the solution */
 minionsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");
+	itWorked = null;
 	if (!itWorked){
-		res.status(400).send("Found less than ALL minions; found none.  GET failed.");
-		return;
+		res.status(400);
+		const sorrow = new Error("GET-ALL not working.");
+		next(sorrow);
 	} else {
 		res.send(itWorked);
 		next(); 
 	}
 } );
-*/
+
+minionsRouter.use( (err, req, res, next)=>{
+	res.status(500);
+	console.error(err);
+	res.send("Ev's error, in the min/wor/ide level of routes.");
+}   );
 
 /*
 minionsRouter.get(`/:minionId`, (req, res, next)=>{
