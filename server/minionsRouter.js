@@ -19,7 +19,6 @@ minionsRouter.get('/', (req, res, next) => {
 minionsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");
-	itWorked = null;
 	if (!itWorked){
 		res.status(400);
 		const sorrow = new Error("GET-ALL not working.");
@@ -30,11 +29,41 @@ minionsRouter.get(`/`, (req, res, next) => {
 	}
 } );
 
+// if not working CHECK TYPE, IN 3rd line
+minionsRouter.get("/:id", (req, res, next)=>{
+	const id = req.params.id;
+	const itFound = getFromDatabaseById("minions", id);
+	if (!itFound) {
+		const sorrow = new Error("The server ID-parser didn't get anything");
+		next(sorrow);
+	} else {
+		res.send(itFound);
+		next();
+	}
+} );
+
+minionsRouter.post("/", (req, res, next )=>{
+	if (!req.params.name){
+		const sorrow = new Error("Poorly understood req body in minions PUT");
+		next(sorrow);
+	}
+	const newMin = {
+		name: req.params.name,
+		title: req.params.title,
+		salary: req.params.salary
+	};
+	addToDatabase("minions", newMin );
+	next();
+} );
+
+
 minionsRouter.use( (err, req, res, next)=>{
 	res.status(500);
 	console.error(err);
 	res.send("Ev's error, in the min/wor/ide level of routes.");
 }   );
+
+
 
 /*
 minionsRouter.get(`/:minionId`, (req, res, next)=>{
