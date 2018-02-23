@@ -1,12 +1,22 @@
 /**************************************/
 /*    February 18, 2018 by Evan Genest */
 /**************************************/
+console.log(`...that is all.`);
+
+
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
 express = require("express");
 minionsRouter = express();
 
-minionsRouter.get(`/api/minions`, (req, res, next) => {
+
+minionsRouter.get('/', (req, res, next) => {
+  res.send(getAllFromDatabase('minions'));
+});
+
+
+/*   MY DISGRACED ROUTE
+minionsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");
 	if (!itWorked){
@@ -17,8 +27,10 @@ minionsRouter.get(`/api/minions`, (req, res, next) => {
 		next(); 
 	}
 } );
+*/
 
-minionsRouter.get(`/api/minions/:minionId`, (req, res, next)=>{
+/*
+minionsRouter.get(`/:minionId`, (req, res, next)=>{
 	let itWorked = undefined;
 	itWorked = getFromDatabaseById(`minions`, minionId );
 	if (!itWorked){
@@ -30,10 +42,18 @@ minionsRouter.get(`/api/minions/:minionId`, (req, res, next)=>{
 	}
 } );
 
-minionsRouter.post(`/api/minions`, (req, res, next)=>{
-	itWorked = addToDatabase(`minions`, minionId );
-
+	console.log(`Line 33, before POST...`);
+minionsRouter.post(`/`, (req, res, next)=>{
+	const itWorked = undefined;
+	const minionIn = req.body;
+	console.log(`minionIn, parse, contains: _${minionIn}_`);
+	console.log(`Next line should say "In-variable-it-worked..."`);
+	itWorked = addToDatabase(`minions`, minionIn );
+	console.log(`In variable "itWorked": _${itWorked}_`);
 }  );
+console.log(`...line 42, after POST.`);
+
+*/
 
 console.log("minions router present");
 module.exports = minionsRouter;
