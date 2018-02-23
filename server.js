@@ -11,6 +11,8 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+app.use(cors);
 // TODO errorhandler is here in 4.2.3
 console.log(`Line 15 in server.js.`);
 // TODO -- wot's dis?
@@ -35,10 +37,14 @@ const PORT = process.env.PORT || 4001;
 // Add middware for parsing request bodies here:
 // TEMP EVAN
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./server/db.js");
-app.get(`/api/minions/`, (req, res, next) => {
+app.get(`/api/ideas/`, (req, res, next) => {
+	console.log(`This console log worked, inside the IDEAS ROUTE`);
 	let itWorked = undefined;
-	itWorked = getAllFromDatabase("minions");
-	if (!itWorked){
+	itWorked = getAllFromDatabase("ideas");
+	res.send(itWorked);
+} );
+
+/*	if (!itWorked){
 		res.status(400).send("Found less than ALL minions; found none.  GET failed.");
 		return;
 	} else {
@@ -51,7 +57,7 @@ app.get("api/minions/:id", (req, res, next)=>{
 	res.send(`They want ${req.params.id} or maybe ${id}.`);
 	next();
 } );
-
+*/
 
 // Mount your existing apiRouter below at the '/api' path.
 // UNCOMMENT!   const apiRouter = require('./server/api.js');
