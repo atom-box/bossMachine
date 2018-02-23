@@ -1,18 +1,17 @@
-/*************************************************/
-/*        January 31, 2018 by Evan Genest        */
-/* "Boss Machine" for "Build Your Own APIs"      */
-/*          at Codecademy                        */
-/*                       */
-/**/
-/*****************************************************/
+/****************************************/
+/*        January 31, 2018 by Evan Genest  */
+/* "Boss Machine" for "Build Your Own APIs"*/
+/*          at Codecademy                  */
+/*                                         */
+/***************************************/
 
-// TODO: npm installs for these...
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 app.use(cors);
+app.use(morgan('tiny'));
 // TODO errorhandler is here in 4.2.3
 console.log(`Line 15 in server.js.`);
 // TODO -- wot's dis?
@@ -22,15 +21,15 @@ module.exports = app;
 *  the frontend application to interact as planned with the api server
 */
 
-console.log(`HERE IS PROCESS DOT ENV keys:${Object.keys(process.env)} evanARTHUR`);
-let envKeys =[];
-let x = "";
-envKeys = Object.keys(process.env);
-for (x in envKeys){
-	console.log(`[${x}] is: ${process.env[x]}.`);
-}
+//console.log(`HERE IS PROCESS DOT ENV keys:${Object.keys(process.env)} evanARTHUR`);
+//let envKeys =[];
+//let x = "";
+//envKeys = Object.keys(process.env);
+//for (x in envKeys){
+//	console.log(`[${x}] is: ${process.env[x]}.`);
+//}
 const PORT = process.env.PORT || 4001;
-
+app.use(bodyParser);
 // Add middleware for handling CORS requests from index.html
 
 
