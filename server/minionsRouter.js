@@ -66,6 +66,21 @@ minionsRouter.put("/:id", (req, res, next)=>{
 	}
 }  );
 
+minionsRouter.delete("/:id", (req, res, next)=>{
+	const victory = null;
+	victory = deleteFromDatabasebyId("minions", req.params.id);
+	if (victory){res.send(victory) } else {
+		sorrow = new Error("Deleting went less than ideally; failed to find something to delete.");
+		next(sorrow);
+	};
+}  );
+
+// Superfluous to Minions routes
+minionsRouter.delete("/", (req, res, next)=>{
+	const victory = null;
+	victory = deleteAllFromDatabase("minions"  );
+} );
+
 minionsRouter.use( (err, req, res, next)=>{
 	res.status(500);
 	console.error(err);
