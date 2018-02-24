@@ -54,6 +54,18 @@ minionsRouter.post("/", (req, res, next )=>{
 	}
 } );
 
+minionsRouter.put("/:id", (req, res, next)=>{
+	const victory = null;
+	victory = updateInstanceInDatabase("minions", req.body);
+	if (victory){
+		res.send(victory); 
+	} else {
+		res.status(400);
+		const sorrow = new Error("Failed to update minion -- i.d. might be missing.");
+		next(sorrow);
+	}
+}  );
+
 minionsRouter.use( (err, req, res, next)=>{
 	res.status(500);
 	console.error(err);
