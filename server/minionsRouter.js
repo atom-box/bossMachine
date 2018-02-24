@@ -43,19 +43,16 @@ minionsRouter.get("/:id", (req, res, next)=>{
 } );
 
 minionsRouter.post("/", (req, res, next )=>{
-	if (!req.params.name){
-		const sorrow = new Error("Poorly understood req body in minions PUT");
+	const victory = null;
+	const sorrow = null;
+	victory = addToDatabase("minions", req.body);
+	if (victory){res.status(201).send(req.body);
+	} else {
+		res.status(400);
+		sorrow = new Error("Found no Minion.");
 		next(sorrow);
 	}
-	const newMin = {
-		name: req.params.name,
-		title: req.params.title,
-		salary: req.params.salary
-	};
-	addToDatabase("minions", newMin );
-	next();
 } );
-
 
 minionsRouter.use( (err, req, res, next)=>{
 	res.status(500);
