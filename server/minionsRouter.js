@@ -49,7 +49,7 @@ minionsRouter.post("/", (req, res, next )=>{
 	if (victory){res.status(201).send(req.body);
 	} else {
 		res.status(400);
-		sorrow = new Error("Found no Minion.");
+		sorrow = new Error("Did not post a minion; database interaction problem.");
 		next(sorrow);
 	}
 } );
@@ -88,32 +88,6 @@ minionsRouter.use( (err, req, res, next)=>{
 }   );
 
 
-
-/*
-minionsRouter.get(`/:minionId`, (req, res, next)=>{
-	let itWorked = undefined;
-	itWorked = getFromDatabaseById(`minions`, minionId );
-	if (!itWorked){
-		res.status(400).send("Failed to find: One minion by ID.  Ev.");
-		return;
-	}else{
-		res.send(itWorked);
-		next();
-	}
-} );
-
-	console.log(`Line 33, before POST...`);
-minionsRouter.post(`/`, (req, res, next)=>{
-	const itWorked = undefined;
-	const minionIn = req.body;
-	console.log(`minionIn, parse, contains: _${minionIn}_`);
-	console.log(`Next line should say "In-variable-it-worked..."`);
-	itWorked = addToDatabase(`minions`, minionIn );
-	console.log(`In variable "itWorked": _${itWorked}_`);
-}  );
-console.log(`...line 42, after POST.`);
-
-*/
 
 console.log("minions router present");
 module.exports = minionsRouter;
