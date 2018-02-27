@@ -8,6 +8,9 @@ const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInD
 express = require("express");
 minionsRouter = express({mergeParams: true});
 
+const bodyParser = require('body-parser');
+minionsRouter.use(bodyParser.json());
+
 
 minionsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;

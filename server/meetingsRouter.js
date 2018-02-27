@@ -7,6 +7,10 @@ const {getAllFromDatabase, addToDatabase,  deleteAllFromDatabase} = require("./d
 express = require("express");
 meetingsRouter = express({mergeParams: true});
 
+const bodyParser = require('body-parser');
+meetingsRouter.use(bodyParser.json());
+
+
 
 /*   MY ROUTE works fine, better than the solution */
 meetingsRouter.get(`/`, (req, res, next) => {

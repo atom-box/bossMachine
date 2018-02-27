@@ -3,6 +3,9 @@ const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInD
 express = require("express");
 ideasRouter = express({mergeParams: true});
 
+const bodyParser = require('body-parser');
+ideasRouter.use(bodyParser.json());
+
 
 /*   MY ROUTE works fine, better than the solution */
 ideasRouter.get(`/`, (req, res, next) => {
