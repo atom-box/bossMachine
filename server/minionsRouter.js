@@ -3,19 +3,12 @@
 /**************************************/
 console.log(`...that is all.`);
 
-
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
 express = require("express");
-minionsRouter = express();
+minionsRouter = express({mergeParams: true});
 
-/*
-minionsRouter.get('/', (req, res, next) => {
-  res.send(getAllFromDatabase('minions'));
-});
-*/
 
-/*   MY ROUTE works fine, better than the solution */
 minionsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");

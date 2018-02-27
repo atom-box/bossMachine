@@ -5,7 +5,7 @@
 const {getAllFromDatabase, addToDatabase,  deleteAllFromDatabase} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
 express = require("express");
-meetingsRouter = express();
+meetingsRouter = express({mergeParams: true});
 
 
 /*   MY ROUTE works fine, better than the solution */

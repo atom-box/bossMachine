@@ -1,7 +1,7 @@
 console.log(``);
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require("./db.js");
 express = require("express");
-ideasRouter = express();
+ideasRouter = express({mergeParams: true});
 
 
 /*   MY ROUTE works fine, better than the solution */
