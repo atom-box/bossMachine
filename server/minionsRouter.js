@@ -1,12 +1,12 @@
 /**************************************/
 /*    February 18, 2018 by Evan Genest */
 /**************************************/
-console.log(`...that is all.`);
+console.log(`& minions router &`);
 
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
-express = require("express");
-minionsRouter = express({mergeParams: true});
+const express = require("express");
+const minionsRouter = express({mergeParams: true});
 
 const bodyParser = require('body-parser');
 minionsRouter.use(bodyParser.json());
@@ -28,7 +28,7 @@ minionsRouter.get(`/`, (req, res, next) => {
 // if not working CHECK TYPE, IN 3rd line
 minionsRouter.get("/:id", (req, res, next)=>{
 	const id = req.params.id;
-	const itFound = getFromDatabaseById("minions", id);
+	let itFound = getFromDatabaseById("minions", id);
 	if (!itFound) {
 		const sorrow = new Error("The server ID-parser didn't get anything");
 		next(sorrow);
@@ -39,8 +39,8 @@ minionsRouter.get("/:id", (req, res, next)=>{
 } );
 
 minionsRouter.post("/", (req, res, next )=>{
-	const victory = null;
-	const sorrow = null;
+	let victory = null;
+	let sorrow = null;
 	victory = addToDatabase("minions", req.body);
 	if (victory){res.status(201).send(req.body);
 	} else {
@@ -51,7 +51,7 @@ minionsRouter.post("/", (req, res, next )=>{
 } );
 
 minionsRouter.put("/:id", (req, res, next)=>{
-	const victory = null;
+	let victory = null;
 	victory = updateInstanceInDatabase("minions", req.body);
 	if (victory){
 		res.send(victory); 
@@ -63,7 +63,7 @@ minionsRouter.put("/:id", (req, res, next)=>{
 }  );
 
 minionsRouter.delete("/:id", (req, res, next)=>{
-	const victory = null;
+	let victory = null;
 	victory = deleteFromDatabasebyId("minions", req.params.id);
 	if (victory){res.send(victory) } else {
 		sorrow = new Error("Deleting went less than ideally; failed to find something to delete.");
