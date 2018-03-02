@@ -1,7 +1,8 @@
-console.log(``);
+console.log(`& ideas router &`);
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require("./db.js");
-express = require("express");
-ideasRouter = express({mergeParams: true});
+const checkMillionDollarIdea = require("./server/checkMillionDollarIdea.js" );
+const express = require("express");
+const ideasRouter = express({mergeParams: true});
 
 const bodyParser = require('body-parser');
 ideasRouter.use(bodyParser.json());
@@ -67,7 +68,7 @@ ideasRouter.delete("/:id", (req, res, next)=>{
 	};
 }  );
 
-minionsRouter.use( (err, req, res, next)=>{
+ideasRouter.use( (err, req, res, next)=>{
 	res.status(500);
 	console.error(err);
 	res.send("Ev's error, in the ideas level of routes.");
