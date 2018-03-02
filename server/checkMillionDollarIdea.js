@@ -6,6 +6,10 @@
 /**/
 /*****************************************************/
 
+// look 
+// up things
+// in 
+// http://expressjs.com/th/api.html
 
 const checkMillionDollarIdea = () => {};
 
