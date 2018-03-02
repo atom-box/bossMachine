@@ -28,6 +28,7 @@ meetingsRouter.get(`/`, (req, res, next) => {
 	}
 } );
 
+/*
 meetingsRouter.post("/", (req, res, next )=>{
 	let victory = null;
 	let sorrow = null;
@@ -46,7 +47,7 @@ meetingsRouter.delete("/", (req, res, next)=>{
 	let victory = null;
 	victory = deleteAllFromDatabase("meetings"  );
 } );
-
+*/
 meetingsRouter.use( (err, req, res, next)=>{
 	res.status(500);
 	console.error(err);
