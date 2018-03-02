@@ -1,11 +1,13 @@
 /**************************************/
 /*    February 24, 2018 by Evan Genest */
 /**************************************/
+console.log(`& meetings router &`);
+
 
 const {getAllFromDatabase, addToDatabase,  deleteAllFromDatabase} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
-express = require("express");
-meetingsRouter = express({mergeParams: true});
+const express = require("express");
+const meetingsRouter = express({mergeParams: true});
 
 const bodyParser = require('body-parser');
 meetingsRouter.use(bodyParser.json());
@@ -27,8 +29,9 @@ meetingsRouter.get(`/`, (req, res, next) => {
 } );
 
 meetingsRouter.post("/", (req, res, next )=>{
-	const victory = null;
-	const sorrow = null;
+	let victory = null;
+	let sorrow = null;
+	console.log(`Evan line34 MEETINGS -> <<${Object.keys(req.params)}>>`);
 	victory = addToDatabase("meetings", req.body);
 	if (victory){res.status(201).send(req.body);
 	} else {
@@ -40,7 +43,7 @@ meetingsRouter.post("/", (req, res, next )=>{
 
 
 meetingsRouter.delete("/", (req, res, next)=>{
-	const victory = null;
+	let victory = null;
 	victory = deleteAllFromDatabase("meetings"  );
 } );
 
