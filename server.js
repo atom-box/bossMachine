@@ -37,6 +37,17 @@ app.get("/", (req, res)=>{
 } );
 app.use("/api", apiRouter);
 
+app.use((err, req, res, next)=>{
+	console.err(err);
+	next(err);
+} );
+
+app.use((err, req, res, next)=>{
+	res.status(468);
+	res.send("Bad things happen to good people; server.js line 47.  Check the console.");
+} );
+
+
 // TODO -- originally up on top, like LINE EIGHTEEN ??
 module.exports = app;
 
