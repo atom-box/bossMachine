@@ -15,8 +15,8 @@ ideasRouter.use(bodyParser.json());
 
 /*   MY ROUTE works fine, better than the solution */
 ideasRouter.get(`/`, (req, res, next) => {
-	const x = new Error ("Dummy load.  Remove ASAP.  ideasRouter Line 11."); //***
-	next(x); // ****
+	//const x = new Error ("Dummy load.  Remove ASAP.  ideasRouter Line 11."); //***
+	//next(x); // ****
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("ideas");
 	if (!itWorked){
