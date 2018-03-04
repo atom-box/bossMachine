@@ -62,13 +62,10 @@ minionsRouter.post("/", (req, res, next )=>{
 } );
 
 minionsRouter.delete("/:id", (req, res, next)=>{
-	let victory = null;
-	victory = deleteFromDatabasebyId("minions", req.params.id);
-	if (victory){
-		console.log(`Minion found: [${victory.id}].`)
-		res.status(333).send(victory); 
+	const victory = deleteFromDatabasebyId("minions", req.params.id);
+	if ( Number(victory) ){
+		res.status(200).send(victory); 
 	} else {
-
 		res.status(204).send();
 	};
 }  );
