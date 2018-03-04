@@ -27,46 +27,38 @@ minionsRouter.get(`/`, (req, res, next) => {
 
 minionsRouter.get("/:id", (req, res, next)=>{
 	const id = req.params.id;
-	let found = getFromDatabaseById("minions", id);
-	if (!found) {
-		res.status(404).send();
+	const found = getFromDatabaseById("minions", id);
+	if (found) {
+		res.status(200).send(found);
 	} else {
-		res.send(found);
+		res.status(404).send();
 	}
 } );
 
-
-
 minionsRouter.put("/:id", (req, res, next)=>{
-	let victory = null;
-	victory = updateInstanceInDatabase("minions", req.body);
+	const victory = updateInstanceInDatabase("minions", req.body);
 	if (victory){
-		res.send(victory); 
+		res.status(201).send(victory); 
 	} else {
-		res.status(400);
-		const sorrow = new Error("Failed to update minion -- i.d. might be missing.");
-		next(sorrow);
+		res.status(404).send();	
 	}
 }  );
 
 minionsRouter.post("/", (req, res, next )=>{
-	let victory = null;
-	let sorrow = null;
-	victory = addToDatabase("minions", req.body);
-	if (victory){res.status(201).send(req.body);
+	const victory = addToDatabase("minions", req.body);
+	if (victory){
+		res.status(201).send(victory);
 	} else {
-		res.status(400);
-		sorrow = new Error("Did not post a minion; database interaction problem.");
-		next(sorrow);
+		res.status(404).send();
 	}
 } );
 
 minionsRouter.delete("/:id", (req, res, next)=>{
 	const victory = deleteFromDatabasebyId("minions", req.params.id);
-	if ( Number(victory) ){
+	if ( Number(victory) && victory < 1){
 		res.status(200).send(victory); 
 	} else {
-		res.status(204).send();
+		res.status(404).send();
 	};
 }  );
 
