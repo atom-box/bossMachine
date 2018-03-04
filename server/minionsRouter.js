@@ -25,30 +25,17 @@ minionsRouter.get(`/`, (req, res, next) => {
 	}
 } );
 
-// if not working CHECK TYPE, IN 3rd line
 minionsRouter.get("/:id", (req, res, next)=>{
 	const id = req.params.id;
-	let itFound = getFromDatabaseById("minions", id);
-	if (!itFound) {
-		const sorrow = new Error("The server ID-parser didn't get anything");
-		next(sorrow);
+	let found = getFromDatabaseById("minions", id);
+	if (!found) {
+		res.status(404).send();
 	} else {
-		res.send(itFound);
-		next();
+		res.send(found);
 	}
 } );
 
-minionsRouter.post("/", (req, res, next )=>{
-	let victory = null;
-	let sorrow = null;
-	victory = addToDatabase("minions", req.body);
-	if (victory){res.status(201).send(req.body);
-	} else {
-		res.status(400);
-		sorrow = new Error("Did not post a minion; database interaction problem.");
-		next(sorrow);
-	}
-} );
+
 
 minionsRouter.put("/:id", (req, res, next)=>{
 	let victory = null;
@@ -62,25 +49,40 @@ minionsRouter.put("/:id", (req, res, next)=>{
 	}
 }  );
 
+minionsRouter.post("/", (req, res, next )=>{
+	let victory = null;
+	let sorrow = null;
+	victory = addToDatabase("minions", req.body);
+	if (victory){res.status(201).send(req.body);
+	} else {
+		res.status(400);
+		sorrow = new Error("Did not post a minion; database interaction problem.");
+		next(sorrow);
+	}
+} );
+
 minionsRouter.delete("/:id", (req, res, next)=>{
 	let victory = null;
 	victory = deleteFromDatabasebyId("minions", req.params.id);
-	if (victory){res.send(victory) } else {
-		sorrow = new Error("Deleting went less than ideally; failed to find something to delete.");
-		next(sorrow);
+	if (victory){
+		console.log(`Minion found: [${victory.id}].`)
+		res.status(333).send(victory); 
+	} else {
+
+		res.status(204).send();
 	};
 }  );
 
-// Superfluous to Minions routes
+/* Superfluous to Minions routes
 minionsRouter.delete("/", (req, res, next)=>{
 	const victory = null;
 	victory = deleteAllFromDatabase("minions"  );
-} );
+} ); */
 
 minionsRouter.use( (err, req, res, next)=>{
-	res.status(500);
+	res.status(465);
 	console.error(err);
-	res.send("Ev's error, in the min/wor/ide level of routes.");
+	res.send("Not found in minionsRouter #83.");
 }   );
 
 
