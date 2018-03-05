@@ -17,9 +17,9 @@ ideasRouter.use(bodyParser.json());
 ideasRouter.get(`/`, (req, res) => {
 	const victory = getAllFromDatabase("ideas");
 	if (victory ){
-		res.status(200).send();
+		res.status(200).send(victory);
 	} else {
-		res.status(456).send();
+		res.status(404).send();
 	}
 } );
 
@@ -28,36 +28,36 @@ ideasRouter.get("/:id", (req, res)=>{
 	const id = req.params.id;
 	const victory = getFromDatabaseById("ideas", id);
 	if (victory) {
-		res.status(200).send();
+		res.status(200).send(victory);
 	} else {
-		res.status(457).send();
+		res.status(404).send();
 	}
 } );
 
 ideasRouter.post("/", (req, res)=>{
 	const victory = addToDatabase("ideas", req.body);
 	if (victory){
-		res.status(200).send();
+		res.status(200).send(victory);
 	} else {
-		res.status(499).send();
+		res.status(404).send();
 	}
 } );
 
 ideasRouter.put("/:id", (req, res)=>{
 	const victory = updateInstanceInDatabase("ideas", req.body);
 	if (victory){
-		res.status(200).send(); 
+		res.status(200).send(victory); 
 	} else {
-		res.status(458).send();
+		res.status(404).send();
 	}
 }  );
 
 ideasRouter.delete("/:id", (req, res)=>{
 	const victory = deleteFromDatabasebyId("ideas", req.params.id);
 	if (victory){
-		res.status(200).send(); 
+		res.status(200).send(victory); 
 	} else {
-		res.status(458).send();
+		res.status(404).send();
 	};
 }  );
 
