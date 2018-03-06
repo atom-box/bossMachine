@@ -11,27 +11,24 @@
 // in 
 // http://expressjs.com/th/api.html
 
-const checkMillionDollarIdea = (weeks, rate) => {
-	const net = weeks * rate;
-	if (!net){
-		const sorrow = new Error("Idea rate and/or weeks must both be a 'number'.");
-		req.status(409);
-		return -1; //  non numeric input!
+const checkMillionDollarIdea = (req, res, next) => {
+	let [bucks, weeks, result] = [req.params.weeklyRevenue, req.numWeeks, 0];  
+	result = bucks * weeks;
+	if (!result){
+		req.status(499).send();
 	}
 	if (weeks <= 0 || rate <= 0){
 		const sorrow = new Error("Idea rate and/or weeks must both be positive #s.");
-		req.status(409);
+		req.status(488);
+		next(sorrow);
 		return -2; // 	 negative input # !	
 	} 
 	if (net < 1000000){
-		req.status(209);
-		return 0; //  not a million $ idea!		
+		req.status(209).send();
 	} 
 	if (net >= 1000000){
-		return 1; // 		
+		req.status(200).send(result); // 		
 	} 
-	console.log("Line 33 bug in CMDI");
-	return -3; // should never reach here!   
 }; // error flags are, in order checked
 // -1 a non number in input
 // -2 a negative number in input
