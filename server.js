@@ -37,14 +37,14 @@ app.get("/", (req, res)=>{
 } );
 app.use("/api", apiRouter);
 
-app.use((err, req, res, next)=>{
+/*app.use((err, req, res, next)=>{
 	console.err(err);
 	next(err);
-} );
+} ); */
 
 app.use((err, req, res, next)=>{
-	res.status(468);
-	res.send("Bad things happen to good people; server.js line 47.  Check the console.");
+	console.log("*****************************");
+	console.log(err);
 } );
 
 
