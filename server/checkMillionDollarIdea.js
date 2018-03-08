@@ -12,11 +12,18 @@
 // http://expressjs.com/th/api.html
 
 const checkMillionDollarIdea = (req, res, next) => {
-	//console.log(`(((((((((received here ${req.params.weeklyRevenue} and ${req.numWeeks} ))))))))))`);
-
-
+	// missing  400 
+	// invalid string  400 (def of inv str?)
+	// million-not 400
+	// million-yes  callNext
+if(true
+	&&
+	true
+	&&
+	true){
+	console.log("Weird -- stack ...  WORKS ! ! ! ! ! ! ! ! ! ! ");
 	return;
-	let [bucks, weeks, result] = [req.params.weeklyRevenue, req.numWeeks, 0];  
+	}
 	result = bucks * weeks;
 	if (!result){
 		req.status(499).send();
