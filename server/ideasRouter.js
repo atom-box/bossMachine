@@ -1,6 +1,6 @@
 console.log(`& ideas router &`);
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId } = require("./db.js");
-const checkMillionDollarIdea = require("./checkMillionDollarIdea.js" );
+// const checkMillionDollarIdea = require("./checkMillionDollarIdea.js" );
 const express = require("express");
 const ideasRouter = express({mergeParams: true});
 
@@ -15,6 +15,7 @@ ideasRouter.use(bodyParser.json());
 
 /*   MY ROUTE works fine, better than the solution */
 ideasRouter.get(`/`, (req, res) => {
+	console.log("Line 19 IDEAS-RTR");
 	const victory = getAllFromDatabase("ideas");
 	if (victory ){
 		res.status(200).send(victory);
@@ -25,6 +26,7 @@ ideasRouter.get(`/`, (req, res) => {
 
 // if not working CHECK TYPE, IN 3rd line
 ideasRouter.get("/:id", (req, res)=>{
+	console.log("Line 29 IDEAS-RTR");
 	const id = req.params.id;
 	const victory = getFromDatabaseById("ideas", id);
 	if (victory) {
@@ -37,9 +39,9 @@ ideasRouter.get("/:id", (req, res)=>{
 ideasRouter.post("/", (req, res)=>{
 	const victory = addToDatabase("ideas", req.body);
 	if (victory){
-		res.status(200).send(victory);
+		res.status(201).send(victory);
 	} else {
-		res.status(404).send();
+		res.status(490).send();
 	}
 } );
 
@@ -55,7 +57,7 @@ ideasRouter.put("/:id", (req, res)=>{
 ideasRouter.delete("/:id", (req, res)=>{
 	const victory = deleteFromDatabasebyId("ideas", req.params.id);
 	if (victory){
-		res.status(200).send(victory); 
+		res.status(204).send(victory); 
 	} else {
 		res.status(404).send();
 	};
