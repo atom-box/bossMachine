@@ -18,6 +18,7 @@ const checkMillionDollarIdea = (req, res, next) => {
 	// million-yes  callNext
 
 	const [t, m] = [ req.body.numWeeks, req.body.weeklyRevenue]; 
+	console.log(`This __${t}__ and this __${m}__ were supplied.`);
 	const prod = t * m;
 	if( !t
 	||
@@ -27,8 +28,8 @@ const checkMillionDollarIdea = (req, res, next) => {
 	||
 	false
 	){
-		//console.log("}}}}}}}}}}}}}}}}}}}}}}}} big monkey Machine");
-		req.status(400).send();
+		console.log("}}}}}}}}}}}}}}}}}}}}}}}} just sent a 400 400 400 - - - - ");
+		res.status(400).send();
 	}
 	next(); // REACHES here ONLY if ideas good
 }; 
