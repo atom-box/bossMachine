@@ -16,36 +16,24 @@ const checkMillionDollarIdea = (req, res, next) => {
 	// invalid string  400 (def of inv str?)
 	// million-not 400
 	// million-yes  callNext
-if(true
-	&&
-	true
-	&&
-	true){
-	console.log("Weird -- stack ...  WORKS ! ! ! ! ! ! ! ! ! ! ");
-	return;
+
+	const [t, m] = [ req.body.numWeeks, req.body.weeklyRevenue]; 
+	const prod = t * m;
+	if( !t
+	||
+	!m
+	||
+	(prod < 1000000)
+	||
+	false
+	){
+		//console.log("}}}}}}}}}}}}}}}}}}}}}}}} big monkey Machine");
+		req.status(400).send();
 	}
-	result = bucks * weeks;
-	if (!result){
-		req.status(499).send();
-	}
-	if (weeks <= 0 || rate <= 0){
-		const sorrow = new Error("Idea rate and/or weeks must both be positive #s.");
-		req.status(488);
-		next(sorrow);
-		return -2; // 	 negative input # !	
-	} 
-	if (net < 1000000){
-		req.status(209).send();
-	} 
-	if (net >= 1000000){
-		req.status(200).send(result); // 		
-	} 
-}; // error flags are, in order checked
-// -1 a non number in input
-// -2 a negative number in input
-// 0 not a million dollar idea
-// 1  SUCCESS!   MDI !
-// -3 oops, ran past everything; code bug!
+	next(); // REACHES here ONLY if ideas good
+}; 
+
+
 
 // Leave this exports assignment so that the function can be used elsewhere
 module.exports = checkMillionDollarIdea;
