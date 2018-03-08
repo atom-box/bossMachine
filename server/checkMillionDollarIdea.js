@@ -14,10 +14,10 @@
 const checkMillionDollarIdea = (req, res, next) => {
 	//console.log(`(((((((((received here ${req.params.weeklyRevenue} and ${req.numWeeks} ))))))))))`);
 	const x = "braainn F O G  ...";
-	console.log(`(((((((((received here ${req.body} ))))))))))`);
-	console.log(`(((((((((received here ${req.params} ))))))))))`);
-	console.log(`(((((((((received here ${req.query} ))))))))))`);
-	console.log(`(((((((((received here ${req.headers} ))))))))))`);
+	console.log(`BODY KEYS (((((((((received here ${Object.keys(req.body)} ))))))))))`);
+	console.log(`WEEEEKLY-REVENUE(((((((((received here ${req.body.weeklyRevenue} ))))))))))`);
+	console.log(`# # of of weeks(((((((((received here ${req.body.numWeeks} ))))))))))`);
+	console.log(`HEADERS KEYS(((((((((received here ${Object.keys(req.headers)} ))))))))))`);
 
 
 	return;
