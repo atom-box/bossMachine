@@ -3,7 +3,7 @@ const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInD
 // const checkMillionDollarIdea = require("./checkMillionDollarIdea.js" );
 const express = require("express");
 const ideasRouter = express({mergeParams: true});
-
+const checkMillionDollarIdea = require("./checkMillionDollarIdea.js");
 const bodyParser = require('body-parser');
 ideasRouter.use(bodyParser.json());
 
@@ -36,14 +36,16 @@ ideasRouter.get("/:id", (req, res)=>{
 	}
 } );
 
-ideasRouter.post("/", (req, res)=>{
+ideasRouter.post("/", checkMillionDollarIdea , (req, res, next)=>{
 	const victory = addToDatabase("ideas", req.body);
 	if (victory){
-		res.status(201).send(victory);
+		console.log("yay   o     o     o     o");
+		res.status(200).send();
 	} else {
-		res.status(490).send();
+		res.status(407).send();
 	}
-} );
+
+});
 
 ideasRouter.put("/:id", (req, res)=>{
 	const victory = updateInstanceInDatabase("ideas", req.body);
