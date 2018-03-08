@@ -12,7 +12,9 @@
 // http://expressjs.com/th/api.html
 
 const checkMillionDollarIdea = (req, res, next) => {
-	console.log(`(((((((((received here ${req.params.weeklyRevenue} and ${req.numWeeks} ))))))))))`);
+	//console.log(`(((((((((received here ${req.params.weeklyRevenue} and ${req.numWeeks} ))))))))))`);
+	console.log(`(((((((((received here  ))))))))))`);
+	
 	let [bucks, weeks, result] = [req.params.weeklyRevenue, req.numWeeks, 0];  
 	result = bucks * weeks;
 	if (!result){
