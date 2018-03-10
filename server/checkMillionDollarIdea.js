@@ -26,11 +26,14 @@ const checkMillionDollarIdea = (req, res, next) => {
 	||
 	(prod < 1000000)
 	||
-	false
+	!Number(t)
+	||
+	!Number(m)
 	){
-		console.log("}}}}}}}}}}}}}}}}}}}}}}}} just sent a 400 400 400 - - - - ");
-		res.status(400).send();
+		console.log("}}}}}}}}}}}}}}}}}}}}}}}} just said'return(res.status(400).send()' - - - - ");
+		return(res.status(400).send());
 	}
+	console.log("-=-=-=-=---=-=-=-=-=-=-= just said' simply NEXT()' - - - - ");
 	next(); // REACHES here ONLY if ideas good
 }; 
 
