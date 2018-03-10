@@ -57,10 +57,12 @@ minionsRouter.delete("/:id", (req, res, next)=>{
 	const victory = deleteFromDatabasebyId("minions", req.params.id);
 	if ( Number(victory) && victory < 1){
 		res.status(200).send(victory); 
-	} else {
+	} else if (false){ //got an ID, nuttin there
 		res.status(204).send();
-	};
-}  );
+	} else {
+		res.status(404).send();
+	}
+});
 
 /* Superfluous to Minions routes
 minionsRouter.delete("/", (req, res, next)=>{
