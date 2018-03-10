@@ -58,7 +58,7 @@ minionsRouter.delete("/:id", (req, res, next)=>{
 	if ( Number(victory) && victory < 1){
 		res.status(200).send(victory); 
 	} else {
-		res.status(404).send();
+		res.status(204).send();
 	};
 }  );
 
