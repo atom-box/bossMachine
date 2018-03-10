@@ -40,7 +40,7 @@ ideasRouter.post("/", checkMillionDollarIdea , (req, res, next)=>{
 	const victory = addToDatabase("ideas", req.body);
 	if (victory){
 		console.log("yay   o     o     o     o");
-		res.status(200).send();
+		res.status(201).send();
 	} else {
 		res.status(407).send();
 	}
