@@ -4,7 +4,7 @@
 console.log(`& meetings router &`);
 
 
-const {getAllFromDatabase, addToDatabase,  deleteAllFromDatabase} = require("./db.js");
+const {getAllFromDatabase, addToDatabase,  deleteAllFromDatabase, createMeeting} = require("./db.js");
 //unless I hear otherwise THIS SYNTAX JUST AS GOOD:
 const express = require("express");
 const meetingsRouter = express({mergeParams: true});
@@ -19,15 +19,33 @@ meetingsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("meetings");
 	if (!itWorked){
-		res.status(400);
-		const sorrow = new Error("GET-ALL not working in meetings route.");
-		next(sorrow);
+		res.status(400).send();
 	} else {
-		res.send(itWorked);
-		next(); 
+		res.status(200).send(itWorked);
 	}
 } );
 
+meetingsRouter.post("/", (req, res, next)=>{
+	let victory = null;
+	const newMeeting = createMeeting();
+
+	victory = addToDatabase("meetings", newMeeting );
+	if (victory){
+		res.status(201).send(victory);
+	}else{
+		res.status(405).send();
+	}
+} );
+
+meetingsRouter.delete("/",(req, res, next)=>{
+	let victory = null;
+	victory = deleteAllFromDatabase("meetings");
+	if (victory){
+		res.status(200).send(victory);
+	}else{
+		res.status(406).send();
+	}
+} );
 /*
 meetingsRouter.post("/", (req, res, next )=>{
 	let victory = null;
@@ -48,8 +66,9 @@ meetingsRouter.delete("/", (req, res, next)=>{
 	victory = deleteAllFromDatabase("meetings"  );
 } );
 */
+
 meetingsRouter.use( (err, req, res, next)=>{
-	res.status(500);
+	res.status(555);
 	console.error(err);
 	res.send("Ev's error, in the meetings level of routes.");
 }   );
