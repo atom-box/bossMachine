@@ -21,7 +21,7 @@ minionsRouter.get(`/`, (req, res, next) => {
 		next(sorrow);
 	} else {
 		res.send(itWorked);
-		next(); 
+		//next(); 
 	}
 } );
 
@@ -53,18 +53,22 @@ minionsRouter.post("/", (req, res, next )=>{
 	}
 } );
 
-minionsRouter.delete("/:id", (req, res, next)=>{
-	//console.log(`Yer doomed: _${id}_`);
-	const victory = deleteFromDatabasebyId("minions", req.params.id);
-	//console.log(`Victory-sez: _${victory}_`);
-	if (!Number(id) || false){
-		res.status(432).send();
+minionsRouter.delete("/", (req, res, next)=>{
+	console.log(`SSSSHHHOULD ALWAYS SEE AT LEAST THIS -- Yer doomed: _${id}_`);
+	res.status(777).send();
+	if(!Number(id)){
+		console.log(`Bad unNumberable string.`)
+		next(new Error('badString'));
 	}
-	if ( Number(victory) && victory < 1){
-		res.status(200).send(victory); 
-	} else  { //got an ID, nuttin there
+	const victory = getFromDatabaseById("minions", req.params.id);
+	if (victory){
+		res.status(201).send();
+	} else {
 		res.status(204).send();
-	}
+	} 
+	console.log("Should never get here");
+	res.status(111).send();
+
 });
 
 /* Superfluous to Minions routes
@@ -75,7 +79,7 @@ minionsRouter.delete("/", (req, res, next)=>{
 
 minionsRouter.use( (err, req, res, next)=>{
 	console.log("Mal ----------------------- formed =========x======= input. Went to error throw-catch");
-	res.status(404).send();
+	res.status(419).send();
 } );
 
 
