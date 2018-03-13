@@ -1,10 +1,7 @@
 /**************************************/
 /*    February 18, 2018 by Evan Genest */
 /**************************************/
-console.log(`& minions router &`);
-
 const {getAllFromDatabase, getFromDatabaseById ,addToDatabase, updateInstanceInDatabase, deleteFromDatabasebyId, deleteAllFromDatabase} = require("./db.js");
-//unless I hear otherwise THIS SYNTAX JUST AS GOOD:
 const express = require("express");
 const minionsRouter = express({mergeParams: true});
 
@@ -13,6 +10,7 @@ minionsRouter.use(bodyParser.json());
 
 
 minionsRouter.get(`/`, (req, res, next) => {
+	console.log("Minions  --------- GET");
 	let itWorked = undefined;
 	itWorked = getAllFromDatabase("minions");
 	if (!itWorked){
@@ -26,6 +24,7 @@ minionsRouter.get(`/`, (req, res, next) => {
 } );
 
 minionsRouter.get("/:id", (req, res, next)=>{
+	console.log("Minions  --------- GET");
 	const id = req.params.id;
 	const found = getFromDatabaseById("minions", id);
 	if (found) {
@@ -36,6 +35,7 @@ minionsRouter.get("/:id", (req, res, next)=>{
 } );
 
 minionsRouter.put("/:id", (req, res, next)=>{
+	console.log("Minions  --------- PUT");
 	const victory = updateInstanceInDatabase("minions", req.body);
 	if (victory){
 		res.status(201).send(victory); 
@@ -45,6 +45,7 @@ minionsRouter.put("/:id", (req, res, next)=>{
 }  );
 
 minionsRouter.post("/", (req, res, next )=>{
+	console.log("Minions  --------- POST");
 	const victory = addToDatabase("minions", req.body);
 	if (victory){
 		res.status(201).send(victory);
@@ -53,9 +54,8 @@ minionsRouter.post("/", (req, res, next )=>{
 	}
 } );
 
-minionsRouter.delete("/", (req, res, next)=>{
-	console.log(`SSSSHHHOULD ALWAYS SEE AT LEAST THIS -- Yer doomed: _${id}_`);
-	res.status(777).send();
+minionsRouter.delete("/:id", (req, res, next)=>{
+	console.log("Minions  --------- DELETE");
 	if(!Number(id)){
 		console.log(`Bad unNumberable string.`)
 		next(new Error('badString'));
@@ -71,11 +71,7 @@ minionsRouter.delete("/", (req, res, next)=>{
 
 });
 
-/* Superfluous to Minions routes
-minionsRouter.delete("/", (req, res, next)=>{
-	const victory = null;
-	victory = deleteAllFromDatabase("minions"  );
-} ); */
+
 
 minionsRouter.use( (err, req, res, next)=>{
 	console.log("Mal ----------------------- formed =========x======= input. Went to error throw-catch");
