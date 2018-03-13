@@ -54,13 +54,16 @@ minionsRouter.post("/", (req, res, next )=>{
 } );
 
 minionsRouter.delete("/:id", (req, res, next)=>{
+	//console.log(`Yer doomed: _${id}_`);
 	const victory = deleteFromDatabasebyId("minions", req.params.id);
+	//console.log(`Victory-sez: _${victory}_`);
+	if (!Number(id) || false){
+		res.status(432).send();
+	}
 	if ( Number(victory) && victory < 1){
 		res.status(200).send(victory); 
-	} else if (false){ //got an ID, nuttin there
+	} else  { //got an ID, nuttin there
 		res.status(204).send();
-	} else {
-		res.status(404).send();
 	}
 });
 
@@ -71,10 +74,9 @@ minionsRouter.delete("/", (req, res, next)=>{
 } ); */
 
 minionsRouter.use( (err, req, res, next)=>{
-	res.status(465);
-	console.error(err);
-	res.send("Not found in minionsRouter #83.");
-}   );
+	console.log("Mal ----------------------- formed =========x======= input. Went to error throw-catch");
+	res.status(404).send();
+} );
 
 
 
