@@ -2,7 +2,8 @@ const express = require('express');
 const meetingsRouter =require("./meetingsRouter.js");
 const ideasRouter = require("./ideasRouter.js");
 const minionsRouter = require("./minionsRouter.js");
-const apiRouter = express.Router();
+const apiRouter = express({mergeParams: true});
+
 
 apiRouter.use("/meetings", meetingsRouter);
 apiRouter.use("/minions", minionsRouter);
