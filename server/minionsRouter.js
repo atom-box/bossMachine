@@ -64,15 +64,23 @@ minionsRouter.delete("/:minionsId", (req, res, next)=>{
 	let victory = null;
 	const thisMin = getFromDatabaseById("minions", id);
 	if (thisMin){
+		console.log(`VICTORY BEFORE IS - - ${victory}`);
 		victory = deleteFromDatabasebyId("minions", thisMin);
+		//  HARD SET TEMPORARRRYRYRYRYRILY 
+		console.log(`VICTORY AFTER IS - - ${victory}`);
 		if (victory){
-			res.status(291).send();
+			//res.status(200).send();
+			console.log(`Now - - sending - - ${victory}`);
+			res.send(victory);
 		} else {
-			res.status(292).send();
+			res.status(204).send();
 		}
+	} else {
+		res.status(404).send(); //dsnt exist
+	}
+
 	console.log("Should never get here");
 	res.status(111).send();
-	}
 });
 
 
