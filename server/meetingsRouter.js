@@ -13,7 +13,6 @@ const bodyParser = require('body-parser');
 meetingsRouter.use(bodyParser.json());
 
 
-
 /*   MY ROUTE works fine, better than the solution */
 meetingsRouter.get(`/`, (req, res, next) => {
 	let itWorked = undefined;
@@ -28,7 +27,6 @@ meetingsRouter.get(`/`, (req, res, next) => {
 meetingsRouter.post("/", (req, res, next)=>{
 	let victory = null;
 	const newMeeting = createMeeting();
-
 	victory = addToDatabase("meetings", newMeeting );
 	if (victory){
 		res.status(201).send(victory);
@@ -41,7 +39,7 @@ meetingsRouter.delete("/",(req, res, next)=>{
 	let victory = null;
 	victory = deleteAllFromDatabase("meetings");
 	if (victory){
-		res.status(200).send(victory);
+		res.status(204).send(victory);
 	}else{
 		res.status(406).send();
 	}
@@ -72,6 +70,8 @@ meetingsRouter.use( (err, req, res, next)=>{
 	console.error(err);
 	res.send("Ev's error, in the meetings level of routes.");
 }   );
+
+//  CATCH    THE  DUDE NOT FOUND
 
 console.log("meetings router present");
 module.exports = meetingsRouter;
