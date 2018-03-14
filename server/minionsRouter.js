@@ -54,12 +54,14 @@ minionsRouter.post("/", (req, res, next )=>{
 	}
 } );
 
-minionsRouter.delete("/:minionsId", (req, res, next)=>{
+minionsRouter.delete("/:minionsId", (req, res)=>{
 	const id = req.params.minionsId;
 	console.log(`Minions  -------R.P.ID${id}-- DELETE`);
 	if(!Number(id)){
 		console.log(`This _${id}_ is a bad, unNumberable string.`)
-		res.status(299);
+		res.status(299).send();
+		return; // WHY??   WHY??
+
 	}
 	let victory = null;
 	const thisMin = getFromDatabaseById("minions", id);
@@ -70,13 +72,19 @@ minionsRouter.delete("/:minionsId", (req, res, next)=>{
 		console.log(`VICTORY AFTER IS - - ${victory}`);
 		if (victory){
 			//res.status(200).send();
-			console.log(`Now - - sending - - ${victory}`);
-			res.send(victory);
+			console.log(`Victory flag says - - __${victory}__`);
+			res.status(200).send();
+			return; // WHY??   WHY??
+
 		} else {
+			console.log(`Victory flag says - - __${victory}__`);
 			res.status(204).send();
+			return;
+
 		}
 	} else {
 		res.status(404).send(); //dsnt exist
+		return; // WHY??   WHY??
 	}
 
 	console.log("Should never get here");
