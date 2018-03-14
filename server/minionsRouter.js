@@ -54,21 +54,21 @@ minionsRouter.post("/", (req, res, next )=>{
 	}
 } );
 
-minionsRouter.delete("/:id", (req, res, next)=>{
-	console.log("Minions  --------- DELETE");
+minionsRouter.delete("/:minionsId", (req, res, next)=>{
+	const id = req.params.minionsId;
+	console.log(`Minions  -------R.P.ID${id}-- DELETE`);
 	if(!Number(id)){
-		console.log(`Bad unNumberable string.`)
-		next(new Error('badString'));
+		console.log(`This _${id}_ is a bad, unNumberable string.`)
+		res.status(299);
 	}
-	const victory = getFromDatabaseById("minions", req.params.id);
+	const victory = getFromDatabaseById("minions", id);
 	if (victory){
-		res.status(201).send();
-	} else {
 		res.status(204).send();
+	} else {
+		res.status(404).send();
 	} 
 	console.log("Should never get here");
 	res.status(111).send();
-
 });
 
 
