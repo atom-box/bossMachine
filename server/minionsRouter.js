@@ -65,8 +65,8 @@ minionsRouter.delete("/:minionsId", (req, res, next)=>{
 	const thisMin = getFromDatabaseById("minions", id);
 	if (thisMin){
 		console.log(`VICTORY BEFORE IS - - ${victory}`);
-		victory = deleteFromDatabasebyId("minions", thisMin);
-		//  HARD SET TEMPORARRRYRYRYRYRILY 
+		console.log(`passing in this-min, it is - -(((( ${Object.keys(thisMin)}))))_`);
+		victory = deleteFromDatabasebyId("minions", thisMin.id);
 		console.log(`VICTORY AFTER IS - - ${victory}`);
 		if (victory){
 			//res.status(200).send();
