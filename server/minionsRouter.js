@@ -73,11 +73,11 @@ minionsRouter.delete("/:id", (req, res, next)=>{
 
 
 
-minionsRouter.use( (err, req, res, next)=>{
+/*minionsRouter.use( (err, req, res, next)=>{
 	console.log("Mal ----------------------- formed =========x======= input. Went to error throw-catch");
 	res.status(419).send();
 } );
-
+*/
 
 
 console.log("minions router present");
