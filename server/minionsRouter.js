@@ -59,7 +59,7 @@ minionsRouter.delete("/:minionsId", (req, res)=>{
 	console.log(`Minions  -------R.P.ID${id}-- DELETE`);
 	if(!Number(id)){
 		console.log(`This _${id}_ is a bad, unNumberable string.`)
-		res.status(299).send();
+		res.status(404).send();
 		return; // WHY??   WHY??
 
 	}
@@ -73,7 +73,7 @@ minionsRouter.delete("/:minionsId", (req, res)=>{
 		if (victory){
 			//res.status(200).send();
 			console.log(`Victory flag says - - __${victory}__`);
-			res.status(200).send();
+			res.status(204).send();
 			return; // WHY??   WHY??
 
 		} else {
