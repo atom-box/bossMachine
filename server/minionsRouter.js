@@ -61,14 +61,18 @@ minionsRouter.delete("/:minionsId", (req, res, next)=>{
 		console.log(`This _${id}_ is a bad, unNumberable string.`)
 		res.status(299);
 	}
-	const victory = getFromDatabaseById("minions", id);
-	if (victory){
-		res.status(204).send();
-	} else {
-		res.status(404).send();
-	} 
+	let victory = null;
+	const thisMin = getFromDatabaseById("minions", id);
+	if (thisMin){
+		victory = deleteFromDatabasebyId("minions", thisMin);
+		if (victory){
+			res.status(291).send();
+		} else {
+			res.status(292).send();
+		}
 	console.log("Should never get here");
 	res.status(111).send();
+	}
 });
 
 
