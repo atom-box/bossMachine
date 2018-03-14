@@ -40,7 +40,7 @@ ideasRouter.post("/", checkMillionDollarIdea , (req, res, next)=>{
 	const victory = addToDatabase("ideas", req.body);
 	if (victory){
 		console.log("yay   o     o     o     o");
-		res.status(201).send();
+		res.status(201).send(victory);
 	} else {
 		res.status(407).send();
 	}
@@ -54,7 +54,7 @@ ideasRouter.put("/:id", (req, res)=>{
 	} else {
 		res.status(404).send();
 	}
-}  );
+}  );  
 
 ideasRouter.delete("/:id", (req, res)=>{
 	const victory = deleteFromDatabasebyId("ideas", req.params.id);
