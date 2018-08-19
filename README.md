@@ -1,4 +1,4 @@
-# Boss Machine
+# Boss Machine Instructions, written by Codecademy
 
 ## Project Overview
 
