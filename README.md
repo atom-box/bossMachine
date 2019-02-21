@@ -1,30 +1,9 @@
 # Boss Machine
 My total coding time to write the backend for this to-do list was about 30 hours. [Unit 4 in Codecademy's 'Build Your Own APIs'.]
-The instructions below were all written by Codecademy.
 
----
 
-## Implementation Details
 
-To complete the project, you will need to complete code in a few sections of the project. Generally, you will not have to touch anything inside the **browser**, **public**, or **node_modules** folders unless you know some React and HTML/CSS and want to customize the look of the Boss Machine. Before doing any of that, however, let's focus on getting the API server up and running:
-
-### Server Boilerplate
-
-In **server.js**, you will see some boilerplate code, but the server is missing key functionality to allow it to run. You must:
-
-- Set up body-parsing middleware with the `body-parser` packagae.
-- Set up CORS middleware with the `cors` package. You can use the default settings.
-- Mount the existing `apiRouter` at `/api`. This router will serve as the starting point for all your API routes.
-- Start the server listening on the provided `PORT`. Make sure to use the `PORT` constant and not a hard-coded number, as this is required for tests to run.
-
-Take note of the comments in **server.js**, as your code needs to fit into specific places around the existing boilerplate.
-
-### API Routes
-
-- Your routes should live inside the **server** folder. The file and router structure is up to you, the testing suite will only test whether your API endpoints work as intended, not how you nest your code!
-- Your 'database' exists in **server/db.js**. The beginning database will be seeded every time the server is restarted. There is more information on working with the database and the helper functions it exports below.
-
- #### Routes Required
+## Routes Required
 
 - `/api/minions`
   - GET /api/minions to get an array of all minions.
@@ -43,13 +22,12 @@ Take note of the comments in **server.js**, as your code needs to fit into speci
   - POST /api/meetings to create a new meeting and save it to the database.
   - DELETE /api/meetings to delete _all_ meetings from the database.
 
-For all `/api/minions` and `/api/ideas routes`, any POST or PUT requests will send their new/updated resources in the request body. POST request bodies will not have an `id` property, you will have to set it based on the next id in sequence.
 
 For `/api/meetings` POST route, no request body is necessary, as meetings are generated automatically by the server upon request. Use the provided `createMeeting` function exported from **db.js** to create a new meeting object.
 
-### Working with the 'Database'
+## Methods
 
-The **server/db.js** file exports helper functions for working with the database arrays. The goal of this project is for you to focus on Express routes and not worry about how the database works under the hood. These functions always take at least one argument, and the first argument is always a string representing the name of the database model: `'minions'`, `'ideas'`, `'meetings'`, or `'work'`.
+The **server/db.js** file exports helper functions for working with the database arrays. This database is non-persistant and was written by the teachers at the school.
 
 `getAllFromDatabase`:
 - Takes only the single argument for model name. Returns the array of elements in the database or `null` if an invalid argument is supplied
@@ -88,43 +66,19 @@ The **server/db.js** file exports helper functions for working with the database
   - day: string
   - note: string
 
-Take note that many values that could be numbers are in fact strings. Since we are writing an API, we can't trust that data is always provided by a client. You may need to transform between String and Number JavaScript types in order to provide full functionality in your API.
-
-### Custom Middleware
-
-- You will create a custom middleware function `checkMillionDollarIdea` that will come in handy in some /api/ideas routes. Write this function in the **server/checkMillionDollarIdea.js** file. This function will make sure that any new or updated ideas are still worth at least one million dollars! The total value of an idea is the product of its `numWeeks` and `weeklyRevenue` properties.
-
-### Bonus
-
-As a bonus, you may implement routes to allow bosses to add and remove work from their minions' backlogs.
-
-Schema:
-- Work:
-  - id: string
-  - title: string
-  - description: string
-  - hours: number
-  - minionId: string
-
-Routes required:
-
-- GET /api/minions/:minionId/work to get an array of all work for the specified minon.
-- POST /api/minions/:minionId/work to create a new work object and save it to the database.
-- PUT /api/minions/:minionId/work/:workId to update a single work by id.
-- DELETE /api/minions/:minionId/work/:workId to delete a single work by id.
-
-To work on the bonus with tests, you will need to remove their pending status. Open the **test/test.js** and edit that begins the /api/minions/:minionId/work routes tests. It should start with `xdescribe(`. If you delete the `x` (so that the line simply starts with `describe(` and save the test file before re-running, your bonus tests will now be active.
-
-In order to fully implement these routes, the database helper functions may not provide all the functionality that you need, and you may need to use router parameters or other methods to attach the `minionId` properties correctly and handle the edge cases property. Good luck!
+Note that many values that could be numbers are in fact strings. Since this is an outward facing API, we can't trust that data is always provided by a client. My code transforms between String and Number JavaScript types in order to provide full functionality in the API.
 
 ## Testing
 
-A testing suite has been provided for you, checking for all essential functionality and
-edge cases.
+A testing suite was  provided by Codecademy.  Directions:
 
-To run these tests, first open the root project directory in your terminal. Then run `npm install` to install all necessary testing dependencies (you will only need to do this step once).
-Finally, run `npm run test`. You will see a list of tests that ran with information
-about whether or not each test passed. After this list, you will see more specific output
-about why each failing test failed. While they are open in a terminal window, these tests will re-run every time you save server files. If you want to quit the testing loop, use `Ctrl + C`. If you only want to run the tests once, you can run the `mocha` command in the terminal from your project root directory.
+`
+>To run these tests, first open the root project directory in your terminal. Then 
+> run `npm install` to install all necessary testing dependencies (you will only need to do 
+> this step once).
+> Finally, run `npm run test`. You will see a list of tests that ran with information
+> about whether or not each test passed. After this list, you will see more specific output
+> about why each failing test failed. While they are open in a terminal window, these tests will re-run every time you save server files. If you want to quit the testing loop, use `Ctrl + C`. If you only want to run the tests once, you can run the `mocha` command in the terminal from your project root directory.
 
-As you implement functionality, run the tests to ensure you are implementing your routes and middleware correctly. The tests will additionally help you identify edge cases that you may not have anticipated when first writing your routes. You should also test the functionality on the frontend to make sure that things are working as intended. Feel free to add logging middleware to your server, it will help with debugging!
+> As you implement functionality, run the tests to ensure you are implementing your routes and middleware correctly. The tests will additionally help you identify edge cases that you may not have anticipated when first writing your routes. You should also test the functionality on the frontend to make sure that things are working as intended. Feel free to add logging middleware to your server, it will help with debugging!
+`
