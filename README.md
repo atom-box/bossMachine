@@ -1,7 +1,7 @@
 # Boss Machine
 * I wrote pretty much the entire backend
 * Location of my code: bossMachine/server
-* Lines of code: 437 lines
+* Lines of my code: 437 lines
 * Time this project took to complete: 30 hours
 * Lots of that time was spent conferring with classmates and looking things up
 * The front end (not by me!) is all in React.js
