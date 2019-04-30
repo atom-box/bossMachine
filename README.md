@@ -3,6 +3,7 @@
 * Lines of code: 437 lines
 * Time this project took to complete: 30 hours
 * Lots of that time was spent conferring with classmates and looking things up
+* The front end is all in React.js
 
 ## Description of the routes and methods:
 
