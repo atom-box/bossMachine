@@ -1,4 +1,5 @@
 # Boss Machine
+* I wrote pretty much the entire backend
 * Location of my code: bossMachine/server
 * Lines of code: 437 lines
 * Time this project took to complete: 30 hours
