@@ -1,7 +1,6 @@
 # Boss Machine
-My total coding time to write the backend for this to-do list was about 30 hours. [Unit 4 in Codecademy's 'Build Your Own APIs'.]
-
-
+My total coding time to write the backend for this to-do list was about 30 hours. [Unit 4 in Codecademy's 'Build Your Own APIs'.]<br>
+My code is almost all in the BOSSMACHINE/SERVER directory.
 
 ## Routes Required
 
