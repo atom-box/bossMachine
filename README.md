@@ -1,8 +1,10 @@
 # Boss Machine
-My total coding time to write the backend for this to-do list was about 30 hours. [Unit 4 in Codecademy's 'Build Your Own APIs'.]<br>
-My code is almost all in the BOSSMACHINE/SERVER directory.
+* Location of my code: bossMachine/server
+* Lines of code: 437 lines
+* Time this project took to complete: 30 hours
+* Lots of that time was spent conferring with classmates and looking things up
 
-## Routes Required
+## Description of the routes and methods:
 
 - `/api/minions`
   - GET /api/minions to get an array of all minions.
@@ -21,12 +23,7 @@ My code is almost all in the BOSSMACHINE/SERVER directory.
   - POST /api/meetings to create a new meeting and save it to the database.
   - DELETE /api/meetings to delete _all_ meetings from the database.
 
-
-For `/api/meetings` POST route, no request body is necessary, as meetings are generated automatically by the server upon request. Use the provided `createMeeting` function exported from **db.js** to create a new meeting object.
-
-## Methods
-
-The **server/db.js** file exports helper functions for working with the database arrays. This database is non-persistant and was written by the teachers at the school.
+## Description of the methods in Node.js
 
 `getAllFromDatabase`:
 - Takes only the single argument for model name. Returns the array of elements in the database or `null` if an invalid argument is supplied
@@ -46,7 +43,7 @@ The **server/db.js** file exports helper functions for working with the database
 `deleteAllFromDatabase`:
 - Takes only the single argument for model name. Deletes all elements from the proper model and returns a new, empty array. You will only need to use this function for a /api/meetings route.
 
-**Schemas**
+**The Schemas**
 
 - Minion:
   - id: string
@@ -65,11 +62,11 @@ The **server/db.js** file exports helper functions for working with the database
   - day: string
   - note: string
 
-Note that many values that could be numbers are in fact strings. Since this is an outward facing API, we can't trust that data is always provided by a client. My code transforms between String and Number JavaScript types in order to provide full functionality in the API.
+Note that many values that could be numbers are in fact strings. Since this is an outward facing API, I can't trust that data is always provided by a client. My code transforms between String and Number JavaScript types in order to provide full functionality in the API.
 
 ## Testing
 
-A testing suite was  provided by Codecademy.  Directions:
+Notes for me in the future in case I forget the syntax for invoking the Mocha Chai:
 
 `
 >To run these tests, first open the root project directory in your terminal. Then 
@@ -78,6 +75,4 @@ A testing suite was  provided by Codecademy.  Directions:
 > Finally, run `npm run test`. You will see a list of tests that ran with information
 > about whether or not each test passed. After this list, you will see more specific output
 > about why each failing test failed. While they are open in a terminal window, these tests will re-run every time you save server files. If you want to quit the testing loop, use `Ctrl + C`. If you only want to run the tests once, you can run the `mocha` command in the terminal from your project root directory.
-
-> As you implement functionality, run the tests to ensure you are implementing your routes and middleware correctly. The tests will additionally help you identify edge cases that you may not have anticipated when first writing your routes. You should also test the functionality on the frontend to make sure that things are working as intended. Feel free to add logging middleware to your server, it will help with debugging!
 `
